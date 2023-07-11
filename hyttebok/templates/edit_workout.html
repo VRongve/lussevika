@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container edit-blog-post-container">
+    <div class="loader-container" id="upload-post-spinner">
+        <div class="loader"></div>
+    </div>
+    <div id="edit-alert-message-container">
+        <div class="alert alert-danger alert-dismissible" id="edit-post-danger-message" style="display: none;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> Det skjedde en feil ved oppdatering av innlegget.
+        </div>
+    </div>
+    <article>
+        <h2 class="main-header-page-text">Her kan du redigere treningsøkten du lastet opp</h2>
+        <form method="POST" enctype="multipart/form-data" id="upload-edit-workout-form">
+            <div class="form-group row">
+                <div class="form-group col-sm-9 add-post-form">
+                    <input type="text" class="form-control" id="workout-title" name="title" placeholder="Nanv på treningsøkt" value="{{selected_workout.name}}" required>
+                </div>
+                <div class="form-group col-sm-3 add-post-form">
+                    <input type="number" min="0" step="1" class="form-control" id="workout-duration" name="duration" placeholder="Tid i minutter" value="{{selected_workout.time}}" required>
+                </div>
+                <div class="form-group add-post-form">
+                    <textarea class="form-control" id="workout-description" name="description" placeholder="Beskriv treningsøkten" rows="10" required>{{selected_workout.description}}</textarea>
+                </div>
+                <div class="form-group col-sm-3 add-post-form dropdown">
+                    <label for="category">Kateogri</label>
+                    <select class="form-control" id="workout-category" name="category" required>
+                        {% for cat in categories %}
+                        <option value='{{cat.id}}'>{{cat.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="form-group col-sm-3 add-post-form dropdown sub-cat">
+                    <label for="subcategory">Fokusområdet</label>
+                    <select class="form-control" id="workout-subcat" name="subcategory" required>
+                        {% for subcat in subcategories %}
+                        <option value='{{subcat.id}}'>{{subcat.name}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="edit-post-buttons">
+                {% if selected_workout.user_id == current_user.id or current_user.id == 1 %}
+                <div class="update-post-button">
+                    <button type="submit" class="btn primary-btn submit-post-form" onclick="editWorkoutForm(event,'{{ selected_workout.id }}')">Oppdater</button>
+                </div>
+                {% endif %}
+                <div class="edit-cancel-button">
+                    <a class="btn secondary-btn cancle-edit-form" href="{{url_for('workouts')}}">Lukk</a>
+                </div>
+                {% if selected_workout.user_id == current_user.id or current_user.id == 1 %}
+                <div class="delete-post-button">
+                    <a class="btn primary-btn delete-post-form" onclick="deleteCurrentWorkout('{{selected_workout.id}}')">Slett økt</a>
+                </div>
+                {% endif %}
+            </div>
+        </form>
+    </article>
+</section>
+{% endblock %}

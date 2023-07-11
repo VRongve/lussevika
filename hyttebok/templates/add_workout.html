@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="loader-container" id="upload-post-spinner">
+    <div class="loader"></div>
+</div>
+<section class="container add-new-blog-post">
+    <h2 class="main-header-page-text">Her kan du legge til en ny treningsøkt i databasen</h2>
+    <form method="POST" action="/add_new_workout" enctype="multipart/form-data" id="upload-post-form">
+        <div class="form-group row">
+            <div class="form-group col-sm-7 add-post-form">
+                <input type="text" class="form-control" id="workout-title" name="title" placeholder="Nanv på treningsøkt" required>
+            </div>
+            <div class="form-group col-sm-2 add-post-form">
+                <input type="number" min="0" step="1" class="form-control" id="workout-duration" name="duration" placeholder="Tid i hele minutter" required>
+            </div>
+            <div class="form-group col-sm-3 add-post-form">
+                <input type="text" class="form-control" id="workout-location" name="location" placeholder="Sted" required>
+            </div>
+            <div class="form-group add-post-form">
+                <textarea class="form-control" id="workout-description" name="description" placeholder="Beskriv treningsøkten" rows="10" required></textarea>
+            </div>
+            <div class="form-group col-sm-3 add-post-form">
+                <label for="category">Kateogri</label>
+                <select class="form-control" id="workout-category" name="category" required>
+                    <option value="">Velg en kategori</option>
+                    {% for cat in categories %}
+                    <option value='{{cat.id}}'>{{cat.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="form-group col-sm-3 add-post-form">
+                <label for="subcategory">Sub Kategori</label>
+                <select class="form-control" id="workout-subcat" name="subcategory" required>
+                    <option value="">Velg en sub-kategori</option>
+                    {% for subcat in subcategories %}
+                    <option value='{{subcat.id}}'>{{subcat.name}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        </div>
+        <button type="submit" class="btn primary-btn submit-post-form">Publiser</button>
+    </form>
+</section>
+{% endblock %}

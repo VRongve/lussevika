@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="admin-user-list">
+    <h2 id="register-user-header" class="main-header-page-text">Registrerte brukere</h2>
+    <div class="container" id="user-container-content">
+        {% for user in users %}
+        <article class="user-container">
+            <div class="p-4 shadow-4 rounded-3 user-data-container">
+                <div class="group-user-data">
+                    <div class="user-data">
+                        <p class="user-id-content">{{user.id}}</p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-name-content">{{user.firstname}} {{user.lastname}}</p>
+                    </div>
+                    <div class="user-data">
+                        <p class="user-email-content">{{user.email}}</p>
+                    </div>
+                    <div class="delete-user-button-container user-data">
+                        <button class="delete-user-button" id="delete_user_{{user.id}}" onclick="deleteUser('{{user.firstname}}','{{user.lastname}}','{{user.id}}')"><img class="small-delete-icon" src="../static/images/trash-icon.png" alt="deleteitem"></button>
+                    </div>
+                </div>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

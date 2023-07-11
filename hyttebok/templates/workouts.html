@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="loader-container" id="upload-post-spinner">
+    <div class="loader"></div>
+</div>
+<section class="container list-posts workout-section">
+    <h2 class="main-header-page-text">Treningsøkter</h2>
+    <div class="workout-header-details">
+        <div id="workout-header-buttons">
+            <div id="create-new-workout">
+                <a class="btn primary-btn" id="add-new-workout" href="{{url_for('add_workout')}}">Legg til ny økt</a>
+            </div>
+            <div id="filter-workout-container">
+                <div class="outer-container-category">
+                    <p id="category-label">Kategori:</p>
+                    <div class="form-control" id="filter-on-category">
+                        <select id="filter-on-category-options" onchange="filterWorkouts()">
+                            <option value='0'>Alle</option>
+                            {% for cat in categories %}
+                            <option value='{{cat.id}}'>{{cat.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="outer-container-subcategory">
+                    <p id="subcategory-label">Fokusområdet:</p>
+                    <div class="form-control" id="filter-on-subcategory">
+                        <select id="filter-on-subcategory-options" onchange="filterWorkouts()">
+                            <option value='0'>Alle</option>
+                            {% for subcat in subcategories %}
+                            <option value='{{subcat.id}}'>{{subcat.name}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input class="form-control" id="my-search-text" oninput="filterWorkouts()" type="serach" placeholder="Søk..">
+    <div class="container list-blog-post-container" id="list-blog-posts-view">
+        {% for workout in list_workouts %}
+        <article class="blog-post-element">
+            <div class="p-4 shadow-4 rounded-3 list-group-item-view-list">
+                <div class="group-post-metadata">
+                    <h5><a href="{{url_for('workout',id=workout.id)}}">{{workout.name}}</a></h5>
+                    <p class="from-date-post-list-posts">Tid: {{workout.time}}</p>
+                    <p class="to-date-post-list-posts">Sted: {{workout.sted}}</p>
+                    <p class="workout-category">Kategori: {{workout.category.name}}</p>
+                    <p class="workout-subcategory">Fokusområdet: {{workout.sub_category.name}}</p>
+                    <p class="workout-subcategory">Lagt til av: {{workout.user.firstname}} {{workout.user.lastname}}</p>
+                </div>
+                {% if workout.owner_id == current_user.id or current_user.id == 1 %}
+                <div class="group-post-buttons">
+                    <a class="edit-post-button-view" href="{{url_for('edit_workout',id=workout.id)}}"><img class="small-view-icon" src="../static/images/edit.png" alt="view"></a>
+                    <a class="delete-post-button-view" href="#" onclick="deleteWorkout( '{{current_user.id}}','{{workout.id}}')"><img class="small-view-icon" src="../static/images/trash-icon.png" alt="view"></a>
+                </div>
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+<!-- By including the script in this html the script will only run on this page -->
+<script src="../static/script/filter_workouts_cookies.js"></script>
+{% endblock %}

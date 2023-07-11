@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="container single-blogpost-section">
+    <div class="list-group">
+        <div class="container list-blog-post-container">
+            <h1 class="single-blog-post-title">{{selected_workout.name}}</h1>
+            <div class="single-post-dates">
+                <h6 class="single-blog-post-from-date">Tid: {{selected_workout.time}} minutter</h6>
+            </div>
+            <p class="single-post-added-by">Lagt til av: {{selected_workout.user.firstname}} {{selected_workout.user.lastname}}</p>
+            <div class="p-4 shadow-4 rounded-3 list-group-item">
+                <pre class="list-post-text-main">{{selected_workout.description}}</pre>
+            </div>
+            <div id="back-to-workouts-button">
+                <a href="{{url_for('workouts')}}" class="btn secondary-btn back-to-posts">Tilbake</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

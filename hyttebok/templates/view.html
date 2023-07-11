@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="loader-container" id="upload-post-spinner">
+    <div class="loader"></div>
+</div>
+<div class="alert alert-success alert-dismissible" id="view-post-success-message" style="display: none;">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Suksess!</strong> Innlegget ditt ble lastet opp.
+</div>
+<section class="container list-posts">
+    <h2 class="main-header-page-text">Hyttebok hilsener</h2>
+    <div class="filter-post-container" id="year-view-filter-list">
+        {% for year in years %}
+        <button type="button" class="btn year" id="{{year}}" onclick="filterListOnYear(this)">{{year}}</button>
+        {% endfor %}
+    </div>
+    <input class="form-control" id="my-search-text" oninput="filterPostsList()" type="serach" placeholder="Søk..">
+    <div class="container list-blog-post-container" id="list-blog-posts-view">
+        {% for post in sorted_list %}
+        <article class="blog-post-element">
+            <div class="p-4 shadow-4 rounded-3 list-group-item-view-list">
+                <div class="group-post-metadata">
+                    <h5><a href="{{url_for('post',id=post.id)}}">{{post.blog_title}}</a></h5>
+                    <p class="from-date-post-list-posts">Fra: {{post.fromDate}}</p>
+                    <p class="to-date-post-list-posts">Til: {{post.toDate}}</p>
+                    <p class="added-post-by">Lagt til av: {{post.post.firstname}} {{post.post.lastname}}</p>
+                </div>
+                {% if post.user_id == current_user.id or current_user.id == 1 %}
+                <div class="group-post-buttons">
+                    <a class="edit-post-button-view" href="{{url_for('edit_post',id=post.id)}}"><img class="small-view-icon" src="../static/images/edit.png" alt="view"></a>
+                    <a class="delete-post-button-view" href="#" onclick="delete_blog_post( '{{current_user.id}}','{{post.id}}')"><img class="small-view-icon" src="../static/images/trash-icon.png" alt="view"></a>
+                </div>
+                {% endif %}
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

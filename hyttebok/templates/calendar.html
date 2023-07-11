@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="calendar-section">
+    <div class="container calendar-container">
+        <!-- Modal Add New Event -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">Ny booking</h5>
+                    </div>
+                    <div class="modal-body">
+                    ...
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal Event Info -->
+        <div class="modal fade" id="event-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="event-modal-title">Modal title</h5>
+                    </div>
+                    <div class="modal-body">
+                        <strong>Fra dato: </strong><p id="event-start"></p>
+                        <strong>Til dato: </strong><p id="event-end"></p>
+                        <strong>Beskrivelse: </strong><pre id="event-description"></pre>
+                        <strong>Lagt til av: </strong><p id="event-owner"></p>
+                        <strong>Booking Event ID: </strong><p id="booking-event-id"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn primary-btn" id="edit-booking-event">Rediger</button>
+                        <button type="button" class="btn primary-btn" id="delete-booking-event" onclick="deleteEvent()">Slett</button>
+                        <button type="button" class="btn primary-btn" id="close-event-details" data-dismiss="modal">Lukk</button>
+                    </div>
+                </div>
+            </div>
+        </div>    
+        <div id="calendar"></div>
+    </div>
+</section>
+<!-- By including the script in this html the script will only run on this page -->
+<script src="../static/script/cal.js"></script>
+<script> 
+    var eventList = '{{events}}';
+</script>
+{% endblock %}

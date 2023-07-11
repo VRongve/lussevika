@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="loader-container" id="upload-post-spinner">
+    <div class="loader">
+    </div>
+    <h2 class="percent-progress" id="progress-circle-text">0<span>%</span></h2>
+</div>
+<section class="container add-new-blog-post">
+    <h2 class="main-header-page-text">Her kan du legge igjen en hilsen fra ditt opphold</h2>
+    <form method="POST" action="/addpost" enctype="multipart/form-data" id="upload-post-form">
+        <div class="form-group row">
+            <div class="form-group col-sm-6 add-post-form">
+                <input type="text" class="form-control" id="blogTitle" name="blogtitle" placeholder="Tittel" required>
+            </div>
+            <div class="form-group col-sm-3 add-post-form">
+                <input type="date" class="form-control" id="fromDateField" name="fromDate" placeholder="Fra dato" required>
+            </div>
+            <div class="form-group col-sm-3 add-post-form">
+                <input type="date" class="form-control" id="toDateField" name="toDate" placeholder="Til Dato" required>
+            </div>
+            <div class="form-group add-post-form">
+                <textarea class="form-control" id="inputBlogText" name="blogcontent" placeholder="Her kan du skrive innlegget ditt" rows="10" required></textarea>
+            </div>
+            <div class="form-group add-post-form">
+                <input type="file" class="form-control" id="upload_image" name="images" multiple>
+            </div>
+        </div>
+        <button type="submit" onclick="addPostForm(event)" class="btn primary-btn submit-post-form">Publiser</button>
+    </form>
+</section>
+{% endblock %}

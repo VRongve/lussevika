@@ -1,0 +1,55 @@
+{% extends 'base.html' %} {% block content %}
+<main class="container-v2">
+  <div class="main-content-v2">
+    <header class="header-v2">
+        <h3>Velkommen til Økslevegen 11, {{logged_in_user.firstname}}!</h3>
+        <h5>Her vil du se det siste innlegget som er lagt til i hytteboken</h5>
+    </header>
+    <div class="main-section-v2">
+      {% if show_blog_post %}
+      <div class="blog-post-metadata-v2">
+        <h2 class="landing-page-text single-blog-post-title"><a href="{{url_for('post',id=last_post.id)}}">{{last_post.blog_title}}</a></h2>
+        <div class="single-post-dates">
+          <h6 class="single-blog-post-from-date"><strong>Fra: {{last_post.fromDate}}</strong></h6>
+          <h6 class="single-blog-post-to-date"><strong>Til: {{last_post.toDate}}</strong></h6>
+        </div>
+        <p class="single-post-added-by">Lagt til av: {{last_post.post.firstname}} {{last_post.post.lastname}}</p>
+      </div>
+      {% endif %}
+      <div class="main-section-v3">
+        <aside class="weather-v2">
+          <div class="weather-report-section">
+            <iframe id="weather-card-hevsdalen rounded-3" src="https://www.yr.no/nb/innhold/1-183721/card.html"></iframe>
+          </div>
+        </aside>
+        {% if show_blog_post %}
+        <div class="main-blog-content-v2">
+          <div class="blog-post-content-v2">
+            <div class="wrap-blog-post-container">
+              <div class="p-4 shadow-4 rounded-3 box-post">
+                <pre class="list-post-text-main">{{last_post.blog_content}}</pre>
+              </div>
+            </div>
+          </div>
+          <div class="blog-post-gallery-v2">
+            {% if show_slider %}
+            {% if show_next %}
+            <div class="landing-page-slider-buttons">
+              <a href="#" class="previous round" onclick="selectPrevImage(event)">&#8249;</a>
+              <a href="#" class="next round" onclick="selectNextImage(event)">&#8250;</a>
+            </div>
+            {% endif %}
+            <div class="slider">
+              {% for image in images %}
+                <img class="landing-page-image {% if loop.first %} active {% endif %}" src="{{ image }}" alt="landing-page-image" />
+              {% endfor %} 
+            </div>
+            {% endif %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</main>
+{% endblock %}

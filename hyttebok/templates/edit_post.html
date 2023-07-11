@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container edit-blog-post-container">
+    <div class="loader-container" id="upload-post-spinner">
+        <div class="loader">
+        </div>
+        <h2 class="percent-progress" id="progress-circle-text">0<span>%</span></h2>
+    </div>
+    <div id="edit-alert-message-container">
+        <div class="alert alert-success alert-dismissible" id="edit-post-success-message" style="display: none;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Suksess!</strong> Du har nå oppdatert innlegget.
+        </div>
+        <div class="alert alert-danger alert-dismissible" id="edit-post-danger-message" style="display: none;">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong>Error!</strong> Det skjedde en feil ved oppdatering av innlegget.
+        </div>
+    </div>
+    <article>
+        <h2 class="main-header-page-text">Her kan du oppdatere hyttebok innlegget ditt</h2>
+        <form method="POST" enctype="multipart/form-data" id="upload-post-form" novalidate>
+            <div class="form-group row">
+                <div class="form-group col-sm-6 add-post-form">
+                    <input type="text" class="form-control" id="blogTitle" name="blogtitle" placeholder="Tittel" value="{{post.blog_title}}" required>
+                </div>
+                <div class="form-group col-sm-3 add-post-form">
+                    <input type="date" class="form-control" id="fromDateField" name="fromDate" placeholder="Fra dato" value="{{post.fromDate}}" required>
+                </div>
+                <div class="form-group col-sm-3 add-post-form">
+                    <input type="date" class="form-control" id="toDateField" name="toDate" placeholder="Til dato" value="{{post.toDate}}" required>
+                </div>
+                <div class="form-group add-post-form">
+                    <textarea class="form-control" id="inputBlogText" name="blogcontent" placeholder="Her kan du skrive innlegget ditt" rows="10" required>{{post.blog_content}}</textarea>
+                </div>
+                <div class="form-group add-post-form">
+                    <input type="file" class="form-control" id="upload_image" name="images" multiple>
+                </div>
+            </div>
+            <div class="blog-post-gallery">
+                <div class="image-gallery-container-outer" id="edit-post-image-gallery">
+                    {% for image in images %}
+                    <div class="edit-single-image-container">
+                        {% set part1,part2 = image.imgkit_url.rsplit('/',1) %}
+                        {% set transformation = '/tr:h-350,w-350/' %}
+                        {% set transformed_url = part1 + transformation + part2 %}
+                        <img class="edit-single-blogpost-image" src="{{ transformed_url }}" alt="blog-post-image">
+                        {% if post.user_id == current_user.id or current_user.id == 1 %}
+                        <span class="delete-uploaded-post-image" id="{{ image.imgkit_id ~ "_" ~ image.id }}" onclick="deleteImage(this,'{{post.id}}')">&times;</span>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="edit-post-buttons">
+                {% if post.user_id == current_user.id or current_user.id == 1 %}
+                <div class="update-post-button">
+                    <button type="submit" class="btn primary-btn submit-post-form" onclick="editPostForm(event,'{{ post.id }}')">Oppdater</button>
+                </div>
+                {% endif %}
+                <div class="edit-cancel-button">
+                    <a class="btn secondary-btn cancle-edit-form" href="{{url_for('view')}}">Lukk</a>
+                </div>
+                {% if post.user_id == current_user.id or current_user.id == 1 %}
+                <div class="delete-post-button">
+                    <a class="btn primary-btn delete-post-form" onclick="deletePost('{{ post.id }}')">Slett innlegg</a>
+                </div>
+                {% endif %}
+            </div>
+        </form>
+    </article>
+</section>
+{% endblock %}

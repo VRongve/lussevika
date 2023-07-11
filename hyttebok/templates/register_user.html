@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="register-user">
+  {% if success_message %}
+  <div class="alert alert-success alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>Gratulerer!</strong> {{full_name}} du har nå blitt lagt til i databasen og kan logge inn.
+  </div>
+  {% endif %}
+  {% if error_message %}
+  <div class="alert alert-danger alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>OBS!</strong> Det oppstod et problem når en prøvde å legge til burkeren i databasen.
+  </div>
+  {% endif %}
+  {% if errorEmailExist %}
+  <div class="alert alert-warning alert-dismissible">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>OBS!</strong> Denne email addressen er allerede registrert tidligere. Prøv å logg inn eller bruk en annen email.
+  </div>
+  {% endif %}
+  <div class="container register-new-user-container">
+    <div class="row">
+      <div class="col-lg-6 bg-white m-auto" id="register-user-bg-cont">
+        <h3 class="text-center">Registrering</h3>
+        <h6 class="text-center lead">Vennligst registrer en ny bruker her</h6>
+        <form action="{{ url_for('register_user') }}" method="POST" onsubmit="return validationCheck(event)" novalidate>
+          <div class="alert alert-warning alert-dismissible form-group error-text-group" id="error-message-container" style="display: none">
+            <a href="#" class="close" onclick="hideAlert()">&times;</a>
+            <div id="error-message">Email er ikke gyldig!</div>
+          </div>
+          <div class="form-group row register">
+            <input type="text" name="firstname" class="form-control form-register-user" onkeydown="hildeAlertKeyStroke()" id="inputFirstNamel3" placeholder="Fornavn" required>
+          </div>
+          <div class="form-group row register">
+            <input type="text" name="lastname" class="form-control form-register-user" onkeydown="hildeAlertKeyStroke()" id="inputLastNamel3" placeholder="Etternavn" required>
+          </div>
+          <div class="form-group row register">
+            <input type="email" name="email" class="form-control form-register-user" onkeydown="hildeAlertKeyStroke()" id="inputEmaill3" placeholder="Email" required>
+          </div>
+          <div class="form-group row register">
+            <input type="password" name="password" class="form-control form-register-user" onkeydown="hildeAlertKeyStroke()" id="inputPassword3" placeholder="Passord" required>
+          </div>
+          <div class="form-group row register">
+            <input type="password" name="confirmPassword" class="form-control form-register-user" onkeydown="hildeAlertKeyStroke()" id="inputConfirmPassword3" placeholder="Bekreft Passord" required>
+          </div>
+          <div class="form-group row register">
+            <div class="register-user-btn-group">
+              <button type="submit" class="btn primary-btn">Registrer</button>
+              <a class="btn secondary-btn" href="{{ url_for('login') }}">Gå til login</a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

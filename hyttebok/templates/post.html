@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<section class="container single-blogpost-section">
+    <div class="list-group">
+        <div class="container list-blog-post-container">
+            <h1 class="single-blog-post-title">{{post.blog_title}}</h1>
+            <div class="single-post-dates">
+                <h6 class="single-blog-post-from-date">Fra: {{post.fromDate}}</h6>
+                <h6 class="single-blog-post-to-date">Til: {{post.toDate}}</h6>
+            </div>
+            <p class="single-post-added-by">Lagt til av: {{post.post.firstname}} {{post.post.lastname}}</p>
+            <div class="p-4 shadow-4 rounded-3 list-group-item">
+                <pre class="list-post-text-main">{{post.blog_content}}</pre>
+            </div>
+            <div class="blog-post-gallery">
+                {% if show_slider %}
+                <div class="full-img" id="fullImgBox">
+                    <span onclick="closeImage()">X</span>
+                    <img src="#" id="fullImg" alt="full-image-size">
+                    <button class="btn-slide popout-slider-next btn-next" onclick="nextPopOutImage()">></button>
+                    <button class="btn-slide popout-slider-prev btn-prev" onclick="prevPopOutImage()"><</button>
+                </div>
+                <div class="image-gallery-container-outer">
+                        {%  for image in images %}
+                        {% set part1,part2 = image.imgkit_url.rsplit('/',1) %}
+                        {% set transformation = '/tr:h-350,w-350/' %}
+                        {% set transformed_url = part1 + transformation + part2 %}
+                        <img class="single-blogpost-image" id="image_{{image.id}}" onclick="showFullImg(this)" src="{{ transformed_url }}" alt="blog-post-image">
+                        {% endfor %}
+                </div>
+                {% endif %}
+            </div>
+            <div id="back-to-posts-button">
+                <a href="{{url_for('view')}}" class="btn secondary-btn back-to-posts">Tilbake</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
