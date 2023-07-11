@@ -355,7 +355,7 @@ async function addPostForm(event) {
             console.log(data);
             if (data.status == "success") {
                 document.getElementById("upload-post-spinner").style.display = "none"; 
-                //window.location.href = "/view"; 
+                window.location.href = "/view"; 
             } else if (data.message == "From date needs to be before end date") {
                 document.getElementById("upload-post-spinner").style.display = "none";
                 alert("Fra dato kan ikke være etter sluttdato");
