@@ -20,7 +20,7 @@ app = Flask(__name__)
 # Secret key
 app.config["SECRET_KEY"] = 'Thisisasecretkey!'
 # Add database
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://lepmptafvdrnqf:72172c9ca8c17591b7e85aab5e31823ada3f9e9d9f6bbf457f69f1fb0901c3cd@ec2-3-234-204-26.compute-1.amazonaws.com:5432/d2iegd8p1iv04l'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://kpyqwecgjfyjjo:210b80db23ee4506d7e471e67417f04865625db2177e3a65cfde30160e184a54@ec2-63-34-16-201.eu-west-1.compute.amazonaws.com:5432/db7013evohkmgt'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # Image config
 app.config["ALLOWED_IMAGE_EXTENSIONS"] = ["PNG","JPG", "JPEG"]
