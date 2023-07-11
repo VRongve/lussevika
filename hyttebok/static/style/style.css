@@ -32,7 +32,7 @@ body {
 
 .footer {
     width: 100%;
-    background-color: #2E424D;
+    background-color: #686461;
     height: 100px;
     margin-top: auto;
     display: flex;
@@ -75,7 +75,7 @@ body {
 
 .navbar-custome {
   margin-bottom: 0;
-  background-color: #2E424D;
+  background-color: #686461;
 }
 
 .navbar-nav a {
@@ -456,19 +456,19 @@ padding: 10px;
   }
 
   .single-blog-post-title a {
-    color: #2E424D
+    color: #686461
   }
 
   .single-blog-post-title a:hover {
-    color: #5B8291
+    color: #9E9B98
   }
 
   .group-post-metadata h5 a {
-    color: #2E424D
+    color: #686461
   }
 
   .group-post-metadata h5 a:hover {
-    color: #5B8291
+    color: #9E9B98
   } 
 
   .single-post-dates {
@@ -546,7 +546,7 @@ padding: 10px;
   
   .loader {
     border: 16px solid #f3f3f3; 
-    border-top: 16px solid #2E424D;
+    border-top: 16px solid #686461;
     border-radius: 50%;
     width: 120px;
     height: 120px;
@@ -555,7 +555,7 @@ padding: 10px;
 
   .percent-progress{
     padding-top: 0.5rem;
-    color: #2E424D;
+    color: #686461;
   }
   
   @keyframes spin {
@@ -635,7 +635,7 @@ padding: 10px;
   }
 
   .filter-post-container .year{
-    background-color: #5b8291;
+    background-color: #9E9B98;
     width: 120px;
     padding-top: 1rem;
     padding-bottom: 1rem;
@@ -646,15 +646,15 @@ padding: 10px;
   }
 
   .filter-post-container .year:hover {
-    background-color: #98DAD9;
+    background-color: #BACBDB;
     opacity: 50%;
-    color: #2E424D;
+    color: #686461;
   }
 
   .filter-post-container .year:active{
-    background-color: #98DAD9;
+    background-color: #BACBDB;
     opacity: 50%;
-    color: #2E424D;
+    color: #686461;
   }
 
   @media screen and (max-width:450px){
@@ -710,7 +710,7 @@ padding: 10px;
   }
 
   .btn.primary-btn{
-    background-color: #5b8291;
+    background-color: #9E9B98;
     color: #fff;
   }
 
@@ -719,15 +719,15 @@ padding: 10px;
   }
 
   .btn.secondary-btn{
-    border-color: #5b8291;
+    border-color: #9E9B98;
     border-style: solid;
     border-width: thin;
-    color: #2E424D;
+    color: #686461;
   }
 
 
   .btn.secondary-btn:hover{
-    background-color: #5b8291;
+    background-color: #9E9B98;
     color: #fff;
   }
 
@@ -803,7 +803,7 @@ padding: 10px;
 .header-v2 h3, .header-v2 h5{
   text-align: center;
   font-weight: 600;
-  background-image: linear-gradient(to right, #2E424D, #5B8291);
+  background-image: linear-gradient(to right, #686461, #9E9B98);
   color: transparent;
   background-clip: text;
   -webkit-background-clip: text;
@@ -973,7 +973,7 @@ padding: 10px;
 }
 
 .fc {
-  color: #2E424D;
+  color: #686461;
 }
 
 .fc-event-title{
@@ -981,15 +981,15 @@ padding: 10px;
 }
 
 .fc-toolbar {
-  color: #2E424D;
+  color: #686461;
 }
 
 .fc-col-header-cell-cushion, .fc-daygrid-day-number {
-  color: #2E424D;
+  color: #686461;
 }
 
 .fc .fc-daygrid-day.fc-day-today{
-  background-color: #98DAD9;
+  background-color: #BACBDB;
 }
 
 .workout-header-details{
@@ -1053,17 +1053,17 @@ a.next {
 
 a.previous:hover,
 a.next:hover {
-  background-color: #5B8291;
+  background-color: #9E9B98;
   color: black;
 }
 
 a.previous {
-  background-color: #2E424D;
+  background-color: #686461;
   color: white;
 }
 
 a.next {
-  background-color: #2E424D;
+  background-color: #686461;
   color: white;
 }
 

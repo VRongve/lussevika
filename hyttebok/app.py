@@ -219,7 +219,7 @@ def register_user():
     success_message = False
     error_message = False
     if request.method == "POST":
-        email = request.form['email']
+        email = (request.form['email']).lower()
         firstname = str(request.form['firstname']).capitalize().strip()
         lastname = str(request.form['lastname']).capitalize().strip()
         email = request.form['email']
@@ -288,7 +288,7 @@ def login():
     showError = False
     showNoneUser = False
     if request.method == "POST":
-        email=request.form["email"]
+        email=(request.form["email"]).lower()
         password=request.form["password"]
         # Use email to check if email address exist, and then check if password entered matches password in database
         user = Users.query.filter_by(email=email).first()

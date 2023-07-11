@@ -47,9 +47,9 @@ ___
 
 * Color Palett
    * I have implemented the following color palette for my website:
-      * #2E424D
-      * #5B8291
-      * #98DAD9
+      * #686461 - (header and footer)
+      * #9E9B98 - buttons
+      * #BACBDB - hover button
       * #EAEBED
 
 * Admin
